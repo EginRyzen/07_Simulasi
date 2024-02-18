@@ -45,8 +45,14 @@
                                         {{ $item->created_at->diffForHumans() }}</span>
                                     {{-- <h3 class="timeline-header"><a href="#">Support Team</a> sent you an
                                         email</h3> --}}
-                                    <img src="{{ asset('img/' . $item->foto) }}" height="500" class="py-5 d-block m-auto"
-                                        alt="">
+                                    <a href="{{ asset('img/' . $item->foto) }}" data-toggle="lightbox"
+                                        data-title="{{ $item->foto }}" data-gallery="gallery"
+                                        data-footer="<a href='{{ asset('img/' . $item->foto) }}' class='btn
+                                        btn-secondary btn-sm' download> <i class='fa fa-download'></i> </a>">
+                                        <img src="{{ asset('img/' . $item->foto) }}" height="500"
+                                            class="py-5 d-block m-auto" alt="">
+                                    </a>
+
                                     <div class="timeline-body">
                                         <h3>{{ $item->judul }}</h3>
                                         {{ $item->deskripsi }}
