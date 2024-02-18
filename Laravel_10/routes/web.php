@@ -24,4 +24,6 @@ Route::resource('/', UserController::class);
 Route::post('login', [UserController::class, 'login']);
 Route::get('logout', [UserController::class, 'logout']);
 
-Route::resource('timeline', GaleryController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::resource('timeline', GaleryController::class);
+});

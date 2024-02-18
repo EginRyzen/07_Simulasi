@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Galery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class GaleryController extends Controller
 {
@@ -12,7 +14,10 @@ class GaleryController extends Controller
      */
     public function index()
     {
-        return view('Page.timeline');
+        $user = Auth::user();
+        $galery = Galery::where('id_user', $user->id)->latest()->get();
+
+        return view('Page.timeline', compact('galery'));
     }
 
     /**
@@ -28,7 +33,27 @@ class GaleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        $validate = Validator::make($request->all(), [
+            'foto' => 'required|image|mimes:jpg,svg,png,gif'
+        ]);
+        if ($validate->fails()) {
+            return back()->with('alert', 'Foto Tidak Memenuhi Syarat!!');
+        }
+        $nfile = $user->id . date('YmdHis') . '.' . $request->foto->getClientOriginalExtension();
+        $request->foto->move(public_path('img'), $nfile);
+
+        $data = [
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'id_user' => $user->id,
+            'foto' => $nfile,
+        ];
+
+        Galery::create($data);
+
+        return back()->with('success', 'Upload Berhasil!!');
     }
 
     /**
