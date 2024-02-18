@@ -78,7 +78,7 @@
                         <textarea name="deskripsi" class="form-control" placeholder="Deskripsi" required rows="5"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="file" name="foto" id="inputPreview">
+                        <input type="file" required name="foto" id="inputPreview">
                         <p class="text-danger">Foto harus berformat,jpg,svg,png, dan gif</p>
                     </div>
                     <div class="form-group">

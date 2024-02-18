@@ -52,8 +52,60 @@
                                         {{ $item->deskripsi }}
                                     </div>
                                     <div class="timeline-footer">
-                                        <a class="btn btn-primary btn-sm">Read more</a>
+                                        <a data-toggle="modal" data-target="#modal-update{{ $item->id }}"
+                                            class="btn btn-primary btn-sm">Edit</a>
                                         <a class="btn btn-danger btn-sm">Delete</a>
+                                    </div>
+                                    <div class="modal fade" id="modal-update{{ $item->id }}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Default Update</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ url('timeline/' . $item->id) }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <input type="text" name="judul" required minlength="100"
+                                                                placeholder="Judul" value="{{ $item->judul }}"
+                                                                class="form-control" id="">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <textarea name="deskripsi" class="form-control" placeholder="Deskripsi" required rows="5">{{ $item->deskripsi }}</textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="file" name="foto"
+                                                                id="updateImage{{ $item->id }}">
+                                                            <p class="text-danger">Foto harus berformat,jpg,svg,png, dan gif
+                                                            </p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @if ($item->foto)
+                                                                <img src="{{ asset('img/' . $item->foto) }}"
+                                                                    id="updatePreview{{ $item->id }}"
+                                                                    style="max-height: 200px;height:100% ; max-width:150px; width:100%">
+                                                            @else
+                                                                <img id="updatePreview{{ $item->id }}"
+                                                                    style="max-height: 200px;height:100% ; max-width:150px; width:100%">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
                                     </div>
                                 </div>
                             </div>

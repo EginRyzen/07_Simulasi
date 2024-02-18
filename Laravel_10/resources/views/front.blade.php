@@ -65,6 +65,22 @@
                     preview.attr('src', '');
                 }
             });
+            $('[id^="updateImage"]').change(function() {
+                var input = this;
+                var itemId = input.id.replace('updateImage', '')
+                var preview = $('#updatePreview' + itemId);
+                var reader = new FileReader();
+
+                reader.onload = function() {
+                    preview.attr('src', reader.result);
+                }
+
+                if (input.files.length > 0) {
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    preview.attr('src', '');
+                }
+            });
         });
     </script>
 </body>

@@ -75,9 +75,36 @@ class GaleryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Galery $galery)
+    public function update(Request $request, $id)
     {
-        //
+        if (isset($request->foto)) {
+            $user = Auth::user();
+            $validate = Validator::make($request->all(), [
+                'foto' => 'required|image|mimes:jpg,svg,png,gif'
+            ]);
+            if ($validate->fails()) {
+                return back()->with('alert', 'Foto Tidak Memenuhi Syarat!!');
+            }
+            $nfile = $user->id . date('YmdHis') . '.' . $request->foto->getClientOriginalExtension();
+            $request->foto->move(public_path('img'), $nfile);
+
+            $data = [
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+                'foto' => $nfile,
+            ];
+            Galery::where('id', $id)->update($data);
+
+            return back()->with('success', 'Update Berhasil!!');
+        } else {
+            $data = [
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+            ];
+            Galery::where('id', $id)->update($data);
+
+            return back()->with('success', 'Update Berhasil!!');
+        }
     }
 
     /**
