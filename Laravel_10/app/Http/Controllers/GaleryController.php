@@ -59,9 +59,11 @@ class GaleryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Galery $galery)
+    public function show($id)
     {
-        //
+        Galery::where('id', $id)->delete();
+
+        return back()->with('alert', 'Hapus Berhasil!!');
     }
 
     /**

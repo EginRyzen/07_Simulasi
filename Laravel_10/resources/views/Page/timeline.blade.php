@@ -60,7 +60,8 @@
                                     <div class="timeline-footer">
                                         <a data-toggle="modal" data-target="#modal-update{{ $item->id }}"
                                             class="btn btn-primary btn-sm">Edit</a>
-                                        <a class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="{{ url('timeline/' . $item->id) }}" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Apakah Yakin Untuk Di Hapus??')">Delete</a>
                                     </div>
                                     <div class="modal fade" id="modal-update{{ $item->id }}">
                                         <div class="modal-dialog">
