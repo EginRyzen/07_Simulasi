@@ -61,29 +61,49 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="example1" class="table">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
                                                 <th>Profile</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Misc</td>
-                                                <td>PSP browser</td>
-                                                <td>PSP</td>
-                                                <td>-</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <div class="image">
+                                                        <img src="../../dist/img/user2-160x160.jpg"
+                                                            class="img-size-50 mr-3 img-circle" alt="User Image">
+                                                    </div>
+                                                </td>
+                                                <td>Agus Subekti</td>
+                                                <td>Agus@gmail.com</td>
+                                                <td>User</td>
+                                                <td>
+                                                    <a href="" class="btn btn-success btn-xs">Active</a>
+                                                </td>
                                                 <td>C</td>
                                             </tr>
                                             <tr>
-                                                <td>Other browsers</td>
-                                                <td>All others</td>
+                                                <td>2</td>
+                                                <td>
+                                                    <div class="image">
+                                                        <img src="../../dist/img/user2-160x160.jpg"
+                                                            class="img-size-50 mr-3 img-circle" alt="User Image">
+                                                    </div>
+                                                </td>
                                                 <td>-</td>
                                                 <td>-</td>
+                                                <td>U</td>
+                                                <td>
+                                                    <a href="" class="btn btn-danger btn-xs">Suspend</a>
+                                                </td>
                                                 <td>U</td>
                                             </tr>
                                         </tbody>
