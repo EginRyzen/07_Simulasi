@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('email')->unique();
             $table->string('password');
+            $table->enum('status', [1, 0])->default(0);
+            $table->enum('level', ['admin', 'user'])->default('user');
             $table->timestamps();
             $table->softDeletes();
         });
