@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('judul', 100)->nullable();
             $table->text('deskripsi')->nullable();
             $table->text('foto')->nullable();
+            $table->enum('status', ['accept', 'pending', 'declined'])->default('pending');
             $table->timestamps();
             $table->softDeletes();
         });
