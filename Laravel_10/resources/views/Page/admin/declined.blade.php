@@ -59,7 +59,7 @@
                         <div class="card-body p-0">
                             <ul class="nav nav-pills flex-column">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ url('notifikasi') }}" class="nav-link">
                                         <i class="fas fa-inbox"></i> Persetujuan
                                     </a>
                                 </li>

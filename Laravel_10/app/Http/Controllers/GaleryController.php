@@ -15,9 +15,9 @@ class GaleryController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $galery = Galery::where('id_user', $user->id)->latest()->get();
+        $galery = Galery::where('id_user', $user->id)->where('status', ['accept'])->latest()->get();
 
-        return view('Page.timeline', compact('galery'));
+        return view('Page.galery', compact('galery'));
     }
 
     /**
@@ -35,25 +35,37 @@ class GaleryController extends Controller
     {
         $user = Auth::user();
 
-        $validate = Validator::make($request->all(), [
-            'foto' => 'required|image|mimes:jpg,svg,png,gif'
-        ]);
-        if ($validate->fails()) {
-            return back()->with('alert', 'Foto Tidak Memenuhi Syarat!!');
+        if (isset($request->foto)) {
+            $validate = Validator::make($request->all(), [
+                'foto' => 'required|image|mimes:jpg,svg,png,gif'
+            ]);
+            if ($validate->fails()) {
+                return back()->with('alert', 'Foto Tidak Memenuhi Syarat!!');
+            }
+            $nfile = $user->id . date('YmdHis') . '.' . $request->foto->getClientOriginalExtension();
+            $request->foto->move(public_path('img'), $nfile);
+
+            $data = [
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+                'id_user' => $user->id,
+                'foto' => $nfile,
+            ];
+
+            Galery::create($data);
+
+            return back()->with('success', 'Upload Berhasil!!');
+        } else {
+            $data = [
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+                'id_user' => $user->id,
+            ];
+
+            Galery::create($data);
+
+            return back()->with('success', 'Upload Berhasil!!');
         }
-        $nfile = $user->id . date('YmdHis') . '.' . $request->foto->getClientOriginalExtension();
-        $request->foto->move(public_path('img'), $nfile);
-
-        $data = [
-            'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
-            'id_user' => $user->id,
-            'foto' => $nfile,
-        ];
-
-        Galery::create($data);
-
-        return back()->with('success', 'Upload Berhasil!!');
     }
 
     /**

@@ -59,7 +59,7 @@
 </nav>
 
 <div class="modal fade" id="modal-create">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Default Upload</h4>
@@ -71,14 +71,14 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" name="judul" required minlength="100" placeholder="Judul"
+                        <input type="text" name="judul" required maxlength="100" placeholder="Judul"
                             class="form-control" id="">
                     </div>
                     <div class="form-group">
                         <textarea name="deskripsi" class="form-control" placeholder="Deskripsi" required rows="5"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="file" required name="foto" id="inputPreview">
+                        <input type="file" name="foto" accept="image/*" id="inputPreview">
                         <p class="text-danger">Foto harus berformat,jpg,svg,png, dan gif</p>
                     </div>
                     <div class="form-group">

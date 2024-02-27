@@ -87,7 +87,7 @@
                                                             <textarea name="deskripsi" class="form-control" placeholder="Deskripsi" required rows="5">{{ $item->deskripsi }}</textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="file" name="foto"
+                                                            <input type="file" accept="image/*" name="foto"
                                                                 id="updateImage{{ $item->id }}">
                                                             <p class="text-danger">Foto harus berformat,jpg,svg,png, dan gif
                                                             </p>
