@@ -44,11 +44,9 @@ class UserController extends Controller
                 'password' => Hash::make($request->password),
             ];
 
-            $user = User::create($data);
+            User::create($data);
 
-            Auth::login($user);
-
-            return redirect('timeline');
+            return redirect('/')->with('success', 'Silahkan Menunggu Acc Dari Admin');
         } else {
             return back()->with('alert', 'Password yang anda masukan tidak sama!!');
         }
@@ -56,10 +54,10 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $email = User::where('email', $request->email)->first();
+        $email = User::where('email', $request->email)->where('status', 1)->first();
 
         if (!$email) {
-            return back()->with('alert', 'Email Belum Terdaftar!!');
+            return back()->with('alert', 'Email Belum Terdaftar Atau Belum Ada Acc Oleh Admin!!');
         }
 
         if (!Hash::check($request->password, $email->password)) {
@@ -67,7 +65,12 @@ class UserController extends Controller
         }
 
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect('timeline');
+            $user = Auth::user();
+            if ($user->level == 'admin') {
+                return redirect('admin');
+            } else {
+                return redirect('timeline');
+            }
         } else {
             return back();
         }

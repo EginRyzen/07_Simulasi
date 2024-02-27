@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="username" required minlength="20"
+                        <input type="text" class="form-control" name="username" required maxlength="20"
                             placeholder="Username">
                         <div class="input-group-append">
                             <div class="input-group-text">

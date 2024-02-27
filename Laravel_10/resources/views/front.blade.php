@@ -101,7 +101,7 @@
                 $('.btn[data-filter]').removeClass('active');
                 $(this).addClass('active');
             });
-        })
+        });
     </script>
 </body>
 

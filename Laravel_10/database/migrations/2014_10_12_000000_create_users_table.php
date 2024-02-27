@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('username', 20);
             $table->string('name', 100);
-            $table->string('profile');
+            $table->string('profile')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('status', [1, 0])->default(0);

@@ -13,9 +13,10 @@ class AdminController extends Controller
     public function index()
     {
 
-        $users = User::all();
+        $users = User::whereIn('level', ['user'])->get();
+        $admins = User::whereIn('level', ['admin'])->get();
 
-        return view('admin', compact('users'));
+        return view('Page.admin.user', compact('users', 'admins'));
     }
 
     /**
