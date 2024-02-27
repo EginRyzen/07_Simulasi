@@ -33,5 +33,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('updateStatus/{id}', [AdminController::class, 'updatestatus']);
 
     Route::resource('notifikasi', NootifikasiController::class);
-    Route::post('accStatus', [NootifikasiController::class, 'accStatus']);
+    Route::get('declinedhistory', [NootifikasiController::class, 'declined']);
 });

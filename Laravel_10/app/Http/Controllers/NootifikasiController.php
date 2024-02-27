@@ -23,6 +23,18 @@ class NootifikasiController extends Controller
             return view('Page.Admin.notifikasi', compact('notif'));
         }
     }
+    public function declined()
+    {
+        $user = Auth::user();
+        if ($user->level == 'admin') {
+            $notif = Galery::join('users', 'users.id', '=', 'galeries.id_user')
+                ->where('galeries.status', 'declined')
+                ->select('galeries.*', 'users.name')
+                ->get();
+
+            return view('Page.Admin.declined', compact('notif'));
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -36,30 +48,6 @@ class NootifikasiController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function accStatus(Request $request)
     {
         $user = Auth::user();
         if ($user->level == 'admin') {
@@ -95,6 +83,26 @@ class NootifikasiController extends Controller
             return back();
         }
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request)
     {
         //

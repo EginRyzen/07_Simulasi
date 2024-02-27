@@ -59,12 +59,12 @@
                         <div class="card-body p-0">
                             <ul class="nav nav-pills flex-column">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active">
+                                    <a href="#" class="nav-link">
                                         <i class="fas fa-inbox"></i> Persetujuan
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('declinedhistory') }}" class="nav-link">
+                                    <a href="{{ url('declinedhistory') }}" class="nav-link active">
                                         <i class="far fa-trash-alt"></i> Declined
                                     </a>
                                 </li>
@@ -110,11 +110,6 @@
                                                 class="btn btn-success btn-sm"
                                                 onclick="return confirm('Yakin Unutk Di Accept??')">
                                                 Accept
-                                            </button>
-                                            <button type="submit" name="status" value="declined"
-                                                class="btn btn-danger ml-2 btn-sm"
-                                                onclick="return confirm('Yakin Unutk Di Declined??')">
-                                                Declined
                                             </button>
                                         </div>
                                         <!-- /.btn-group -->
@@ -173,11 +168,6 @@
                                                 class="btn btn-success btn-sm"
                                                 onclick="return confirm('Yakin Unutk Di Accept??')">
                                                 Accept
-                                            </button>
-                                            <button type="submit" name="status" value="declined"
-                                                class="btn btn-danger ml-2 btn-sm"
-                                                onclick="return confirm('Yakin Unutk Di Declined??')">
-                                                Declined
                                             </button>
                                         </div>
                                     </div>
