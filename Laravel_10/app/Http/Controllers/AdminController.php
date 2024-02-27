@@ -17,9 +17,8 @@ class AdminController extends Controller
 
         if ($user->level == 'admin') {
             $users = User::whereIn('level', ['user'])->get();
-            $admins = User::whereIn('level', ['admin'])->get();
 
-            return view('Page.admin.user', compact('users', 'admins'));
+            return view('Page.admin.user', compact('users'));
         } else {
             return back();
         }
