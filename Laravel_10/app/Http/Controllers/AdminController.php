@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -12,11 +13,16 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
 
-        $users = User::whereIn('level', ['user'])->get();
-        $admins = User::whereIn('level', ['admin'])->get();
+        if ($user->level == 'admin') {
+            $users = User::whereIn('level', ['user'])->get();
+            $admins = User::whereIn('level', ['admin'])->get();
 
-        return view('Page.admin.user', compact('users', 'admins'));
+            return view('Page.admin.user', compact('users', 'admins'));
+        } else {
+            return back();
+        }
     }
 
     /**
@@ -65,5 +71,29 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $user = Auth::user();
+        if ($user->level == 'admin') {
+            $status = User::where('id', $id)->first();
+
+            if ($status->status == 1) {
+                $data = [
+                    'status' => '0',
+                ];
+
+                User::where('id', $id)->update($data);
+                return back()->with('success', 'Status Berhasil Untuk Di Update!!');
+            } else {
+                $data = [
+                    'status' => 1,
+                ];
+
+                User::where('id', $id)->update($data);
+                return back()->with('success', 'Status Berhasil Untuk Di Update!!');
+            }
+        }
     }
 }

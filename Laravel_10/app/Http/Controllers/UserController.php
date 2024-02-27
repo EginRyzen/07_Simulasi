@@ -55,6 +55,7 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $email = User::where('email', $request->email)->where('status', 1)->first();
+        // dd($email);
 
         if (!$email) {
             return back()->with('alert', 'Email Belum Terdaftar Atau Belum Ada Acc Oleh Admin!!');

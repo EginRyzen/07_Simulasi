@@ -27,5 +27,6 @@ Route::get('logout', [UserController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('timeline', GaleryController::class);
+    Route::resource('admin', AdminController::class);
+    Route::get('updateStatus/{id}', [AdminController::class, 'updatestatus']);
 });
-Route::resource('admin', AdminController::class);

@@ -67,10 +67,19 @@
                     </ul>
                 </li> --}}
                 <li class="nav-item">
-                    <a href="{{ url('admin') }}" class="nav-link">
+                    <a href="{{ url('admin') }}" class="nav-link active">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Tables User
+                            {{-- <span class="right badge badge-danger">New</span> --}}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('logout') }}" class="nav-link">
+                        <i class="nav-icon fa fa-sign-out-alt"></i>
+                        <p>
+                            Log Out
                             {{-- <span class="right badge badge-danger">New</span> --}}
                         </p>
                     </a>
